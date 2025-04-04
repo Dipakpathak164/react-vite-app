@@ -1,32 +1,37 @@
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound"; // 404 Page
 
-// Layout Component
-function Layout() {
+// Layout component
+function Layout({ children }) {
   return (
     <div>
       <Header />
       <Navbar />
-      <Outlet />  {/* This is where child components will render */}
+      {children}
       <Footer />
     </div>
   );
 }
 
+// Define routes
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
-    children: [
-      { index: true, element: <Home /> },
-      { path: "about", element: <About /> },
-      { path: "contact", element: <Contact /> },
-    ],
+    element: <Layout><Home /></Layout>,
+  },
+  {
+    path: "/about",
+    element: <Layout><About /></Layout>,
+  },
+  {
+    path: "*", // Fallback for undefined routes
+    element: <Layout><NotFound /></Layout>,
   },
 ]);
 
