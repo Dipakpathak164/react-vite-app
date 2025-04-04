@@ -4,14 +4,15 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 
-// Layout component
+// Layout Component
 function Layout() {
   return (
     <div>
       <Header />
       <Navbar />
-      <Outlet />
+      <Outlet />  {/* This is where child components will render */}
       <Footer />
     </div>
   );
@@ -20,10 +21,11 @@ function Layout() {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />, // Layout with Navbar, Footer, and pages
+    element: <Layout />,
     children: [
-      { path: "", element: <Home /> },
+      { index: true, element: <Home /> },
       { path: "about", element: <About /> },
+      { path: "contact", element: <Contact /> },
     ],
   },
 ]);
