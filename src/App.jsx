@@ -7,6 +7,9 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound"; // 404 Page
 
+import NotFound from "./pages/NotFound"; // ✅ Ensure the file exists
+
+
 // Layout component
 function Layout({ children }) {
   return (
